@@ -4,4 +4,4 @@ build: ## Build docker workspace image
 
 .PHONY: workspace
 workspace: ## Launch workspace container bash shell
-	docker run -ti --rm --mount type=bind,src=/home/jrdev/develop/php,dst=/var/develop workspace:latest /bin/bash
+	docker run -ti --rm --mount type=bind,src=/path/to/develop/php,dst=/var/develop workspace:latest /bin/bash
