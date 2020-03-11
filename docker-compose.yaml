@@ -1,0 +1,16 @@
+version: '3.7'
+
+networks:
+  app:
+    driver: bridge
+
+services:
+  workspace:
+    build:
+      context: ./
+    image: global_workspace:latest
+    volumes:
+      - ../:/var/develop
+    tty: true
+    networks:
+      - app

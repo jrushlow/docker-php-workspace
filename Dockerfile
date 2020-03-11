@@ -29,6 +29,12 @@ RUN set -xe; \
 # Copy bash aliases defined on host to container
 COPY .bash_aliases /home/developer/.bash_aliases
 
+# Add any PHP extensions needed
+RUN docker-php-ext-install pdo_mysql
+
+# Add caching DIR for composer
+RUN mkdir /.composer && chown developer:developer /.composer
+
 # Cleanup
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
