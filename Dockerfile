@@ -5,7 +5,8 @@ RUN apt-get update && apt-get install -yqq \
     libzip-dev \
     zip \
     gnupg \
-    git
+    git \
+    wget
 
 # Install node and Yarn in workspace container
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash && \
@@ -38,6 +39,12 @@ RUN mkdir /.composer && chown developer:developer /.composer
 # Cleanup
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Install Symfony Installer
+RUN wget https://get.symfony.com/cli/installer -O - | bash
+
+# Make Symfony Global
+RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
 
 # Set which account to use
 USER developer
